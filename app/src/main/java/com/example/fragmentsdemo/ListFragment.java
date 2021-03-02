@@ -15,13 +15,14 @@ import android.widget.TextView;
 import java.util.List;
 
 
-public class ListFragment extends Fragment {
+public class ListFragment extends Fragment implements View.OnClickListener{
 
     Button cs;
     Button ece;
     Button async;
     TextView counter;
     //declare interaction listener
+    private OnFragmentInteractionListener mListener;
 
     public ListFragment() {
 
@@ -41,6 +42,10 @@ public class ListFragment extends Fragment {
         counter= (TextView) view.findViewById(R.id.count);
 
         //add listeners
+        cs.setOnClickListener(this);
+        ece.setOnClickListener(this);
+        async.setOnClickListener(this);
+
 
         return view;
     }
@@ -48,6 +53,12 @@ public class ListFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
+
+        if(context instanceof OnFragmentInteractionListener){
+            this.mListener= (OnFragmentInteractionListener) context;
+        }else{
+            throw new RuntimeException(context.toString()+" must implement OnFragmentInteractionListener");
+        }
 
     }
 
@@ -57,6 +68,21 @@ public class ListFragment extends Fragment {
     }
 
     public void onClick(View view){
+        if(view.getId() == cs.getId()){
 
+            mListener.onButtonClicked(0);
+
+        }else if (view.getId() == ece.getId()){
+
+            mListener.onButtonClicked(1);
+
+        } else if(view.getId() == async.getId() ){
+
+            mListener.onButtonClicked(2);
+        }
+    }
+
+    public interface OnFragmentInteractionListener{
+        void onButtonClicked(int infoID);
     }
 }

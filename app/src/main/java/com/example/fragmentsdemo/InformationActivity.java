@@ -8,7 +8,7 @@ import android.os.Bundle;
 
 public class InformationActivity extends AppCompatActivity {
 
-
+    InformationFragment informationFragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,7 +21,13 @@ public class InformationActivity extends AppCompatActivity {
             return;
         }
 
+        Bundle b1= getIntent().getExtras();
 
+        String info = b1.getString("information");
+
+        informationFragment= (InformationFragment) getSupportFragmentManager().findFragmentById(R.id.infoFrag);
+
+        informationFragment.setText(info);
     }
 
 }
