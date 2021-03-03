@@ -16,7 +16,6 @@ public class MainActivity extends AppCompatActivity implements ListFragment.OnFr
     InformationFragment informationFragment;
     ListFragment listFragment;
     public final static String INFORMATION="information";
-    //declare current informationID
 
     MyAsyncTask myAsyncTask;
     //declare counter
@@ -39,8 +38,8 @@ public class MainActivity extends AppCompatActivity implements ListFragment.OnFr
 
 
     @Override
-    public void onSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {
-        super.onSaveInstanceState(outState, outPersistentState);
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
     }
 
     @Override
